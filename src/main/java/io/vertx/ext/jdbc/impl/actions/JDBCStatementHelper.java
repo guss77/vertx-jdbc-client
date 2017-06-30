@@ -212,8 +212,12 @@ public final class JDBCStatementHelper {
     }
 
     if (value instanceof Timestamp) {
-      return OffsetDateTime.ofInstant(((Timestamp) value).toInstant(), ZoneOffset.UTC).format(ISO_OFFSET_DATE_TIME);
-    }
+        return OffsetDateTime.ofInstant(((Timestamp) value).toInstant(), ZoneOffset.UTC).format(ISO_OFFSET_DATE_TIME);
+      }
+
+    if (value instanceof Date) {
+        return OffsetDateTime.ofInstant(((Date) value).toInstant(), ZoneOffset.UTC).format(ISO_OFFSET_DATE_TIME);
+      }
 
     // large objects
     if (value instanceof Clob) {
